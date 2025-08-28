@@ -39,7 +39,7 @@ function create () {
     key: 'column',
     repeat: 1,
     setXY: {x: 200, y: 0, stepX: 300}
-  })
+  });
 
   const bottomColumns = this.physics.add.staticGroup({
     key: 'column',
@@ -47,7 +47,6 @@ function create () {
     setXY: { x: 350, y: 400, stepX: 300 },
   });
   const road = roads.create(400, 568, 'road').setScale(2).refreshBody();
-
 
   bird = this.physics.add.sprite(0, 50, 'bird').setScale(2);
   bird.setBounce(0.2);
@@ -63,8 +62,21 @@ function create () {
   
   cursors = this.input.keyboard.createCursorKeys();
 
-  messageToPlayer = this.add.text(0, 0, 'Instructions: Press space bar to start', { fontFamily: '"Comic Sans MS", Times, serif', fontSize: "20px", color: "black", backgroundColor: "white" });
+  messageToPlayer = this.add.text(0, 0, 'Instructions: Press space bar to start', { 
+    fontFamily: '"Comic Sans MS", Times, serif', 
+    fontSize: "20px", 
+    color: "black", 
+    backgroundColor: "white" 
+  });
   Phaser.Display.Align.In.BottomCenter(messageToPlayer, background, 0, 50);
+
+  // ✅ Restart key event
+  this.input.keyboard.on('keydown-R', () => {
+    this.scene.restart();
+    hasLanded = false;
+    hasBumped = false;
+    isGameStarted = false;
+  });
 }
 
 function update () {
