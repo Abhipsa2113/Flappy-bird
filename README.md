@@ -15,3 +15,5 @@
 1.The width and height of the game screen (800 x 600 pixels).
 2.The physics system of our game; we're using 'arcade'.
 3.A scene object with the functions we want to use in it, including preload(), create(), and update().
+
+.Created preload() function - I am loading in the images from my assets folder. For the bird image, we load it as a 'sprite', not an image. In Phaser, a 'sprite' can be animated.
