@@ -25,6 +25,8 @@ function preload(){
 }
 //this function generates elements that will appear in our game like background
 let bird;
+let hasLanded = false;
+let cursors;
 function create(){
     const background = this.add.image(0,0,'background').setOrigin(0,0);
     const roads = this.physics.add.staticGroup();
@@ -44,9 +46,24 @@ const bottomColumns = this.physics.add.staticGroup({
   bird.setBounce(0.2);
   bird.setCollideWorldBounds(true);
   this.physics.add.collider(bird, road);
+  this.physics.add.overlap(bird, road, () => hasLanded = true, null, this);
+  this.physics.add.collider(bird, road);
+  cursors = this.input.keyboard.createCursorKeys();
 }
 
 //this function will update the bird position
 function update(){
-
+     if (cursors.up.isDown) {
+    bird.setVelocityY(-160);
+  }
+  if (cursors.up.isDown && !hasLanded) {
+    bird.setVelocityY(-160);
+  }
+   bird.body.velocity.x = 50;
+   if (!hasLanded) {
+    bird.body.velocity.x = 50;
+  }
+  if (hasLanded) {
+    bird.body.velocity.x = 0;
+  }
 }
