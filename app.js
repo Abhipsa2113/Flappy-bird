@@ -24,6 +24,7 @@ function preload(){
     this.load.spritesheet('bird','assets/bird.png',{frameWidth: 64, frameHeight:96});
 }
 //this function generates elements that will appear in our game like background
+let bird;
 function create(){
     const background = this.add.image(0,0,'background').setOrigin(0,0);
     const roads = this.physics.add.staticGroup();
@@ -39,7 +40,12 @@ const bottomColumns = this.physics.add.staticGroup({
 });
 
     const road = roads.create(400,568, 'road').setScale(2).refreshBody();
+    bird = this.physics.add.sprite(0, 50, 'bird').setScale(2);
+  bird.setBounce(0.2);
+  bird.setCollideWorldBounds(true);
+  this.physics.add.collider(bird, road);
 }
+
 //this function will update the bird position
 function update(){
 
