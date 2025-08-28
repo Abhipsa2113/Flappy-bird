@@ -25,7 +25,7 @@ function preload(){
 }
 //this function generates elements that will appear in our game like background
 function create(){
-
+    const background = this.add.image(0,0,'background').setOrigin(0,0);
 }
 //this function will update the bird position
 function update(){
